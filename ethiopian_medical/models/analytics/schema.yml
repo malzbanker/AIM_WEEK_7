@@ -1,0 +1,13 @@
+{{ config(schema='analytics', materialized='table') }}
+
+SELECT
+    message_id,
+    channel,
+    message_date,
+    text,
+    image_path,
+    CASE 
+        WHEN text ILIKE '%medicine%' THEN 'Medical Product'
+        ELSE 'General Message'
+    END AS category
+FROM {{ ref('stg_raw_messages') }}
