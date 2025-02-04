@@ -1,2 +1,4 @@
 data
 downloaded_images
+telegram_scraped_data.csv
+.env
