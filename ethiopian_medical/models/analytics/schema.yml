@@ -1,13 +1,26 @@
-{{ config(schema='analytics', materialized='table') }}
+# {{ config(schema='analytics', materialized='table') }}
 
-SELECT
-    message_id,
-    channel,
-    message_date,
-    text,
-    image_path,
-    CASE 
-        WHEN text ILIKE '%medicine%' THEN 'Medical Product'
-        ELSE 'General Message'
-    END AS category
-FROM {{ ref('stg_raw_messages') }}
+# SELECT
+#     message_id,
+#     channel,
+#     message_date,
+#     text,
+#     image_path,
+#     CASE 
+#         WHEN text ILIKE '%medicine%' THEN 'Medical Product'
+#         ELSE 'General Message'
+#     END AS category
+# FROM {{ ref('stg_raw_messages') }}
+
+version: 2
+
+models:
+  - name: ethiopian_medical
+    description: "Description of the model"
+    columns:
+      - name: message_id
+        description: "Unique ID for messages"
+      - name: channel
+        description: "Communication channel"
+      - name: message_date
+        description: "Date of the message"
